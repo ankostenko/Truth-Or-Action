@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.jetbrains.handson.app.truthoraction.MainActivity">
+    <item android:id="@+id/add_question_button"
+        android:icon="@drawable/ic_baseline_add_24"
+        android:title="Добавить"
+        app:showAsAction="ifRoom" />
+</menu>

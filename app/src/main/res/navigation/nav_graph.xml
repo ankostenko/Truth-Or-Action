@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/MenuFragment">
+
+    <fragment
+        android:id="@+id/ActionFragment"
+        android:name="com.jetbrains.handson.app.truthoraction.ActionFragment"
+        android:label="action_fragment"
+        tools:layout="@layout/action_fragment">
+        <action
+            android:id="@+id/action_to_menu"
+            app:destination="@id/MenuFragment" />
+        <action
+            android:id="@+id/action_to_selection"
+            app:destination="@id/SelectionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/MenuFragment"
+        android:name="com.jetbrains.handson.app.truthoraction.MenuFragment"
+        android:label="menu_fragment"
+        tools:layout="@layout/menu_fragment">
+
+        <action
+            android:id="@+id/menu_to_game"
+            app:destination="@id/SelectionFragment" />
+        <action
+            android:id="@+id/menu_question_list"
+            app:destination="@id/QuestionsListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/SelectionFragment"
+        android:name="com.jetbrains.handson.app.truthoraction.SelectionFragment"
+        android:label="selection_fragment"
+        tools:layout="@layout/fragment_selection">
+
+        <action
+            android:id="@+id/game_to_menu"
+            app:destination="@id/MenuFragment" />
+        <action
+            android:id="@+id/selection_to_truth"
+            app:destination="@id/TruthFragment" />
+        <action
+            android:id="@+id/selection_to_action"
+            app:destination="@id/ActionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/TruthFragment"
+        android:name="com.jetbrains.handson.app.truthoraction.TruthFragment"
+        android:label="truth_fragment"
+        tools:layout="@layout/truth_fragment">
+        <action
+            android:id="@+id/action_to_menu"
+            app:destination="@id/MenuFragment" />
+        <action
+            android:id="@+id/truth_to_selection"
+            app:destination="@id/SelectionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/QuestionsListFragment"
+        android:name="com.jetbrains.handson.app.truthoraction.QuestionsListFragment"
+        android:label="QuestionsListFragment" >
+        <action
+            android:id="@+id/questions_list_to_menu"
+            app:destination="@id/MenuFragment" />
+    </fragment>
+</navigation>
