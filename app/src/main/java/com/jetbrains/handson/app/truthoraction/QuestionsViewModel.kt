@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import kotlin.random.Random
 
 class QuestionsViewModel : ViewModel() {
-    private val _questions = MutableLiveData<MutableList<String>>(
+    private val _questions = MutableLiveData<List<String>>(
         mutableListOf(
             "Если бы у вас была машина времени, в какой период вы бы поехали?",
             "Если бы вам пришлось выбирать ум или красоту, что бы вы выбрали?",
@@ -24,6 +24,9 @@ class QuestionsViewModel : ViewModel() {
     private var _availableQuestions: MutableLiveData<MutableList<String>> = MutableLiveData(mutableListOf())
     val availableQuestions: LiveData<MutableList<String>> = _availableQuestions
 
+    private val _customQuestions = MutableLiveData<MutableList<String>>(mutableListOf())
+    val customQuestions: LiveData<MutableList<String>> = _customQuestions
+
     init {
         availableQuestions.value?.addAll(_questions.value?: mutableListOf("Couldn't initialize available questions"))
     }
@@ -31,6 +34,7 @@ class QuestionsViewModel : ViewModel() {
     fun reinitializeAvailableQuestions() {
         availableQuestions.value?.clear()
         availableQuestions.value?.addAll(_questions.value?: mutableListOf("Couldn't initialize available questions"))
+        availableQuestions.value?.addAll(customQuestions.value?: mutableListOf("Couldn't initialize available questions with custom questions"))
     }
 
     fun chooseRandomQuestion(): String {
@@ -44,5 +48,9 @@ class QuestionsViewModel : ViewModel() {
         val nextQuestion = availableQuestions.value?.get(randomIndex)?: "[Error]: No questions found"
         availableQuestions.value?.removeAt(randomIndex)
         return nextQuestion
+    }
+
+    fun addQuestion(question: String) {
+        customQuestions.value?.add(question)
     }
 }
