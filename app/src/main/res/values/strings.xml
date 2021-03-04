@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Правда или действие</string>
     <string name="action_settings">Settings</string>
-    <string name="empty_questions_list_text">Пока здесь нет ваших вопросов</string>
+    <string name="empty_questions_list_text">Здесь пока нет ваших вопросов</string>
+    <string name="edit_button_text">Редактировать</string>
+    <string name="delete_button_text">Удалить</string>
     <!-- Strings used for fragments for navigation -->
 </resources>

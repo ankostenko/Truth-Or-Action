@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/edit_button"
-        android:title="Редактировать"/>
+        android:title="@string/edit_button_text"/>
     <item
         android:id="@+id/delete_button"
-        android:title="Удалить"/>
+        android:title="@string/delete_button_text"/>
 </menu>
