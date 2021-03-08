@@ -1,26 +1,25 @@
-package com.jetbrains.handson.app.truthoraction
+package com.jetbrains.handson.app.truthoraction.additems
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.widget.EditText
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.activityViewModels
+import com.jetbrains.handson.app.truthoraction.viewmodels.ItemViewModel
+import com.jetbrains.handson.app.truthoraction.R
 
-class AddQuestionsDialog() : DialogFragment() {
+open class AddItemDialog(private val title: String, private val items: ItemViewModel): DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             val inflater = requireActivity().layoutInflater
             val builder = AlertDialog.Builder(it)
-            val dialogWindow = inflater.inflate(R.layout.add_question_dialog, null)
+            val dialogWindow = inflater.inflate(R.layout.add_item_dialog, null)
             builder.setView(dialogWindow)
-                .setTitle("Добавить вопрос")
+                .setTitle("Добавить $title")
                 .setPositiveButton("Добавить") { _, _ ->
-                    val input = dialogWindow.findViewById<EditText>(R.id.question_input)
-                    val sharedQuestionsViewModel: QuestionsViewModel by activityViewModels()
+                    val input = dialogWindow.findViewById<EditText>(R.id.item_input)
                     if (input.text.toString().isNotEmpty()) {
-                        sharedQuestionsViewModel.addItem(input.text.toString())
+                        items.addItem(input.text.toString())
                     }
                 }
                 .setNegativeButton("Отмена") { dialog, _ -> dialog.cancel() }

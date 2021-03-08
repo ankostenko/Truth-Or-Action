@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/question_list_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -25,7 +24,7 @@
             android:layout_weight="0.85">
 
             <TextView
-                android:id="@+id/item_question_text"
+                android:id="@+id/item_displayed_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
@@ -48,7 +47,7 @@
             android:layout_height="match_parent">
 
             <ImageButton
-                android:id="@+id/item_question_dots_menu"
+                android:id="@+id/item_dots_menu"
                 style="?android:attr/actionOverflowButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

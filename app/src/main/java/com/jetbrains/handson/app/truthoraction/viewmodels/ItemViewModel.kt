@@ -1,4 +1,4 @@
-package com.jetbrains.handson.app.truthoraction
+package com.jetbrains.handson.app.truthoraction.viewmodels
 
 import androidx.lifecycle.LiveData
 

@@ -11,11 +11,11 @@
         android:label="action_fragment"
         tools:layout="@layout/action_fragment">
         <action
-            android:id="@+id/action_to_menu"
-            app:destination="@id/MenuFragment" />
-        <action
             android:id="@+id/action_to_selection"
             app:destination="@id/SelectionFragment" />
+        <action
+            android:id="@+id/action_to_menu"
+            app:destination="@id/MenuFragment" />
     </fragment>
     <fragment
         android:id="@+id/MenuFragment"
@@ -55,7 +55,7 @@
         android:label="truth_fragment"
         tools:layout="@layout/truth_fragment">
         <action
-            android:id="@+id/action_to_menu"
+            android:id="@+id/truth_to_menu"
             app:destination="@id/MenuFragment" />
         <action
             android:id="@+id/truth_to_selection"
@@ -63,7 +63,7 @@
     </fragment>
     <fragment
         android:id="@+id/QuestionsListFragment"
-        android:name="com.jetbrains.handson.app.truthoraction.QuestionsListFragment"
+        android:name="com.jetbrains.handson.app.truthoraction.list.QuestionsListFragment"
         android:label="QuestionsListFragment" >
         <action
             android:id="@+id/questions_list_to_menu"
@@ -71,7 +71,7 @@
     </fragment>
     <fragment
         android:id="@+id/ActionListFragment"
-        android:name="com.jetbrains.handson.app.truthoraction.ActionListFragment"
+        android:name="com.jetbrains.handson.app.truthoraction.list.ActionListFragment"
         android:label="ActionListFragment" >
         <action
             android:id="@+id/actions_list_to_menu"

@@ -1,31 +1,29 @@
-package com.jetbrains.handson.app.truthoraction
+package com.jetbrains.handson.app.truthoraction.edititems
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.widget.EditText
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.activityViewModels
+import com.jetbrains.handson.app.truthoraction.R
+import com.jetbrains.handson.app.truthoraction.viewmodels.ItemViewModel
 
-open class EditItemDialog<SharedViewModel: ItemViewModel>(private val layoutId: Int, private val index: Int, private val editFieldId: Int): DialogFragment() {
+open class EditItemDialog(private val index: Int, private val items: ItemViewModel): DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val itemsViewModel: SharedViewModel by activityViewModels()
-
         return activity?.let {
             val inflater = requireActivity().layoutInflater
             val builder = AlertDialog.Builder(it)
-            val dialogWindow = inflater.inflate(layoutId, null)
+            val dialogWindow = inflater.inflate(R.layout.edit_item_dialog, null)
 
             // Fill in input field with item's text to be edited
-            dialogWindow.findViewById<EditText>(editFieldId).setText(itemsViewModel.customItems.value?.get(index))
+            dialogWindow.findViewById<EditText>(R.id.edit_item_field).setText(items.customItems.value?.get(index))
 
             builder.setView(dialogWindow)
                 .setTitle("Редактировать")
                 .setPositiveButton("Принять") { _, _ ->
-                    val input = dialogWindow.findViewById<EditText>(editFieldId)
+                    val input = dialogWindow.findViewById<EditText>(R.id.edit_item_field)
                     if (input.text.toString().isNotEmpty()) {
-                        itemsViewModel.addItem(input.text.toString(), index)
+                        items.addItem(input.text.toString(), index)
                     }
                 }
                 .setNegativeButton("Отмена") { dialog, _ -> dialog.cancel() }

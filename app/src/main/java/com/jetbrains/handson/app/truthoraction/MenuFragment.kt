@@ -6,13 +6,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.activity.addCallback
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.jetbrains.handson.app.truthoraction.viewmodels.ActionsViewModel
+import com.jetbrains.handson.app.truthoraction.viewmodels.QuestionsViewModel
+import kotlin.system.exitProcess
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
 class MenuFragment : Fragment() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // On back button pressed application finishes activities
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            requireActivity().finishAffinity()
+        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment

@@ -47,7 +47,6 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/sfprodisplay_bold"
             android:textColor="@color/textColor"
-            android:text="@string/empty_questions_list_text"
             android:textAlignment="center"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"

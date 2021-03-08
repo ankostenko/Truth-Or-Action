@@ -1,4 +1,4 @@
-package com.jetbrains.handson.app.truthoraction
+package com.jetbrains.handson.app.truthoraction.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -39,7 +39,9 @@ class QuestionsViewModel(application: Application): AndroidViewModel(application
 
     // Read questions from the file
     init {
-        questionsFile.createNewFile()
+        if (!questionsFile.exists()) {
+            questionsFile.createNewFile()
+        }
         runBlocking {
             var list: List<String> = listOf()
             val readFileJob = GlobalScope.launch {
@@ -100,9 +102,11 @@ class QuestionsViewModel(application: Application): AndroidViewModel(application
             }
 
             // Save questions to the file
-            for (str in _customQuestions.value?: listOf<String>()) {
-                questionsFile.writeText(str)
+            var buffer: String = ""
+            for (str in _customQuestions.value?: listOf()) {
+                buffer += str + "\n"
             }
+            questionsFile.writeText(buffer)
         }
     }
 }
