@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setSupportActionBar(findViewById(R.id.question_list_toolbar))
+        setSupportActionBar(findViewById(R.id.items_list_toolbar))
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

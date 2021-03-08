@@ -8,19 +8,24 @@ import android.widget.EditText
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 
-class AddQuestionsDialog() : DialogFragment() {
+open class EditItemDialog<SharedViewModel: ItemViewModel>(private val layoutId: Int, private val index: Int, private val editFieldId: Int): DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val itemsViewModel: SharedViewModel by activityViewModels()
+
         return activity?.let {
             val inflater = requireActivity().layoutInflater
             val builder = AlertDialog.Builder(it)
-            val dialogWindow = inflater.inflate(R.layout.add_question_dialog, null)
+            val dialogWindow = inflater.inflate(layoutId, null)
+
+            // Fill in input field with item's text to be edited
+            dialogWindow.findViewById<EditText>(editFieldId).setText(itemsViewModel.customItems.value?.get(index))
+
             builder.setView(dialogWindow)
-                .setTitle("Добавить вопрос")
-                .setPositiveButton("Добавить") { _, _ ->
-                    val input = dialogWindow.findViewById<EditText>(R.id.question_input)
-                    val sharedQuestionsViewModel: QuestionsViewModel by activityViewModels()
+                .setTitle("Редактировать")
+                .setPositiveButton("Принять") { _, _ ->
+                    val input = dialogWindow.findViewById<EditText>(editFieldId)
                     if (input.text.toString().isNotEmpty()) {
-                        sharedQuestionsViewModel.addItem(input.text.toString())
+                        itemsViewModel.addItem(input.text.toString(), index)
                     }
                 }
                 .setNegativeButton("Отмена") { dialog, _ -> dialog.cancel() }

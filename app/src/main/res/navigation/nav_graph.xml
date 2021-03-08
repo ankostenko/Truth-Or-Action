@@ -27,8 +27,11 @@
             android:id="@+id/menu_to_game"
             app:destination="@id/SelectionFragment" />
         <action
-            android:id="@+id/menu_question_list"
+            android:id="@+id/menu_to_questions_list"
             app:destination="@id/QuestionsListFragment" />
+        <action
+            android:id="@+id/menu_to_action_fragment"
+            app:destination="@id/ActionListFragment" />
     </fragment>
     <fragment
         android:id="@+id/SelectionFragment"
@@ -64,6 +67,14 @@
         android:label="QuestionsListFragment" >
         <action
             android:id="@+id/questions_list_to_menu"
+            app:destination="@id/MenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ActionListFragment"
+        android:name="com.jetbrains.handson.app.truthoraction.ActionListFragment"
+        android:label="ActionListFragment" >
+        <action
+            android:id="@+id/actions_list_to_menu"
             app:destination="@id/MenuFragment" />
     </fragment>
 </navigation>

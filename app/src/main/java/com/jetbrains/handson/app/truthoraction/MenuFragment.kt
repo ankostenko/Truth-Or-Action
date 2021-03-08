@@ -30,11 +30,15 @@ class MenuFragment : Fragment() {
             val sharedActionsViewModel: ActionsViewModel by activityViewModels()
             sharedActionsViewModel.reinitializeAvailableActions()
 
-            findNavController().navigate(R.id.menu_to_game);
+            findNavController().navigate(R.id.menu_to_game)
         }
 
         view.findViewById<Button>(R.id.questions_button).setOnClickListener {
-            findNavController().navigate(R.id.menu_question_list)
+            findNavController().navigate(R.id.menu_to_questions_list)
+        }
+
+        view.findViewById<Button>(R.id.actions_button).setOnClickListener {
+            findNavController().navigate(R.id.menu_to_action_fragment)
         }
     }
 }

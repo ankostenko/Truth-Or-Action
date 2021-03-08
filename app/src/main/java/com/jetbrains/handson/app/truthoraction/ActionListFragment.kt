@@ -1,3 +1,3 @@
 package com.jetbrains.handson.app.truthoraction
 
-class QuestionsListFragment: ListFragment(true)
+class ActionListFragment : ListFragment(false)

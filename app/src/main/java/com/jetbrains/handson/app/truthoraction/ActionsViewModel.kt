@@ -1,11 +1,13 @@
 package com.jetbrains.handson.app.truthoraction
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import kotlin.random.Random
 
-class ActionsViewModel : ViewModel() {
-    private val _actions = MutableLiveData<MutableList<String>>(
+class ActionsViewModel(application: Application) : AndroidViewModel(application), ItemViewModel {
+    private val _actions = MutableLiveData(
         mutableListOf(
             "Не говорите «да» или «нет» в течение 1 минуты.",
             "Станцуйте Макарену.",
@@ -21,6 +23,27 @@ class ActionsViewModel : ViewModel() {
         )
     )
     var availableActions: MutableLiveData<MutableList<String>> = MutableLiveData(mutableListOf())
+
+    private val _customActions = MutableLiveData<MutableList<String>>(mutableListOf())
+    override val customItems: LiveData<MutableList<String>> = _customActions
+
+    override fun addItem(item: String, index: Int) {
+        if (index != -1) {
+            // We edit question not add a new one
+            _customActions.value?.set(index, item)
+        } else {
+            // We add a new question
+            _customActions.value?.add(item)
+        }
+        val temp = _customActions
+        _customActions.value = temp.value
+    }
+
+    override fun removeItem(index: Int) {
+        _customActions.value?.removeAt(index)
+        val temp = _customActions
+        _customActions.value = temp.value
+    }
 
     init {
         availableActions.value?.addAll(_actions.value?: mutableListOf("Couldn't initialize available actions"))
@@ -43,4 +66,6 @@ class ActionsViewModel : ViewModel() {
         availableActions.value?.removeAt(randomIndex)
         return nextQuestion
     }
+
+
 }
